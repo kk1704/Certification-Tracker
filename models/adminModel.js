@@ -17,4 +17,25 @@ const Company = sequelize.define('company', {
     }
 })
 
-module.exports = Company
+const Certification = sequelize.define('certification', {
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+    },
+    certName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    companyID: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    status: {
+        type: DataTypes.STRING
+    }
+})
+
+module.exports = { Company, Certification }

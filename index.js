@@ -1,10 +1,11 @@
 const express = require("express")
 const dotenv = require('dotenv').config()
 const bodyParser = require('body-parser')
-const Company = require('./models/adminModel')
+// const Certification = require('./models/adminModel')
 const admin = require('./routes/adminRoutes')
+const sequelize = require('./connection')
 
-const port = process.env.PORT || 5001
+const port = process.env.PORT || 6001
 const app = express()
 
 app.use(bodyParser.json())
@@ -12,8 +13,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/admin', admin)
 
-// Company.sync({ force: true })
-Company.sync()
+// sequelize.sync({ alter: true })
+sequelize.sync()
     .then((result) => {
         console.log('Table and model synced successfully....')
     })
